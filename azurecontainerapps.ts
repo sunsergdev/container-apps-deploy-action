@@ -611,10 +611,12 @@ export class azurecontainerapps {
         }
 
         if (!(this.addOnServices === null || this.addOnServices === undefined || this.addOnServices.length == 0)){
+            let services = []
             for (const addOnService of this.addOnServices){
                 const bindingName = addOnService.replace(/-/g, '_')
-                this.commandLineArgs.push(`--bind ${addOnService}[:${bindingName}]`)
+                services.push(`${addOnService}[:${bindingName}]`)
             }
+            this.commandLineArgs.push(`--bind ${services.join(' ')}`)
         }
 
         // Determine default values only for the 'create' scenario to avoid overriding existing values for the 'update' scenario
