@@ -627,7 +627,7 @@ jobs:
 
     env:
       TEST_IMAGE_TAG: 'bs-${{ github.run_id }}'
-      TEST_CONTAINER_APP_NAME: 'gh_${{ github.run_id }}'
+      TEST_CONTAINER_APP_NAME: 'gh-${{ github.run_id }}'
 
     steps:
       - name: Checkout action repository
@@ -657,8 +657,8 @@ jobs:
           imageToBuild: ${{ env.TEST_FULL_ACR_NAME }}/${{ env.TEST_IMAGE_REPOSITORY }}:${{ env.TEST_IMAGE_TAG }}
           disableTelemetry: ${{ vars.TEST_DISABLE_TELEMETRY }}
           postgres: |
-            dmsdb1
-            dmsdb2, dmsdb3
+            dms-db1
+            dms-db2, dms-db3
           redis: redis
 
       - name: Delete created Azure Container App
@@ -670,10 +670,10 @@ jobs:
         if: ${{ always()}}
         shell: bash
         run: |
-          az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }}postgresdmsdb1 -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
-          az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }}postgresdmsdb2 -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
-          az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }}postgresdmsdb3 -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
-          az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }}redisredis -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
+          az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }}-postgres-dms-db1 -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
+          az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }}-postgres-dms-db2 -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
+          az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }}-postgres-dms-db3 -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
+          az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }}-redis-redis -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
 
 
 
