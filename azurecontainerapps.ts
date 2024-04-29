@@ -616,7 +616,7 @@ export class azurecontainerapps {
                 const bindingName = addOnService.replace(/-/g, '_')
                 services.push(`${addOnService}[:${bindingName}]`)
             }
-            this.commandLineArgs.push(`--bind ${services.join(' ')}`)
+            this.commandLineArgs.push(`--bind '${services.join(' ')}'`)
         }
 
         // Determine default values only for the 'create' scenario to avoid overriding existing values for the 'update' scenario
