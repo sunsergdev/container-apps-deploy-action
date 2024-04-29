@@ -667,6 +667,18 @@ jobs:
         shell: bash
         run: az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }} -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
       
+      - name: Delete created add-on services
+        if: ${{ always()}}
+        shell: bash
+        run: |
+          az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }}-postgres-dms-db -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
+          az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }}-postgres-dms-db2 -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
+          az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }}-kakfa-kaf1 -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
+          az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }}-kakfa-kaf2 -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
+          az containerapp delete -n ${{ env.TEST_CONTAINER_APP_NAME }}-redis-redis -g ${{ vars.TEST_RESOURCE_GROUP_NAME }} -y
+
+
+
       - name: Delete pushed image
         if: ${{ always() }}
         shell: bash
