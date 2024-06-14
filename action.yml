@@ -139,6 +139,10 @@ inputs:
       this GitHub Action.'
     required: false
     default: false
+  command:
+    description: |
+      'Override default command of the docker container'
+    required: false
   kafka:
     description: |
       'Name of kafka add-on service that will be created and bounded to the container.

@@ -4517,6 +4517,10 @@ class azurecontainerapps {
             this.commandLineArgs.push(`--source ${this.appSourcePath}`);
             this.commandLineArgs.push(`-l ${this.location}`);
         }
+        const command = this.toolHelper.getInput('command', null);
+        if (!this.shouldCreateOrUpdateContainerAppWithUp && !this.util.isNullOrEmpty(command)) {
+            this.commandLineArgs.push(`--command ${command}`);
+        }
     }
     /**
      * Creates or updates the Container App.

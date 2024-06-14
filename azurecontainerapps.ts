@@ -673,6 +673,10 @@ export class azurecontainerapps {
             this.commandLineArgs.push(`-l ${this.location}`);
         }
 
+        const command = this.toolHelper.getInput('command', null) as string;
+        if (!this.shouldCreateOrUpdateContainerAppWithUp && !this.util.isNullOrEmpty(command)) {
+            this.commandLineArgs.push(`--command ${command}`);
+        }
     }
 
     /**
