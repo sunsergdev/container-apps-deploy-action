@@ -4519,7 +4519,7 @@ class azurecontainerapps {
         }
         const command = this.toolHelper.getInput('command', null);
         if (!this.shouldCreateOrUpdateContainerAppWithUp && !this.util.isNullOrEmpty(command)) {
-            this.commandLineArgs.push(`--command ${command}`);
+            this.commandLineArgs.push(`--command "${command}"`);
         }
     }
     /**

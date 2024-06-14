@@ -1,11 +1,11 @@
 name: Run validation on action
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '**.md'
+  # push:
+  #   branches:
+  #     - main
+  #   paths-ignore:
+  #     - '**.md'
   pull_request:
     branches:
       - main
@@ -584,6 +584,7 @@ jobs:
           containerAppEnvironment: ${{ vars.TEST_EXISTING_CONTAINER_APP_ENV }}
           resourceGroup: ${{ vars.TEST_RESOURCE_GROUP_NAME }}
           disableTelemetry: ${{ vars.TEST_DISABLE_TELEMETRY }}
+
 
   update-using-image-yaml:
 
